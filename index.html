@@ -22,6 +22,7 @@
             --text-light: #7f8c8d; /* 淺色文字 */
             --card-bg: #ffffff;
             --border-color: #e9ecef;
+            --favorite-color: #e74c3c; /* 收藏色 - 紅色 */
         }
 
         body {
@@ -63,6 +64,7 @@
             margin-left: 25px;
             font-size: 1.1em;
             transition: color 0.3s;
+            cursor: pointer;
         }
         .navbar .nav-links a:hover, .navbar .nav-links a.active {
             color: var(--accent-color);
@@ -143,6 +145,8 @@
         
         .action-links {
             margin-top: 20px;
+            display: flex;
+            gap: 15px;
         }
         .read-more-btn {
             display: inline-block;
@@ -159,6 +163,21 @@
             transform: translateY(-2px);
         }
 
+        .scholar-btn {
+            display: inline-block;
+            background-color: #4285f4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .scholar-btn:hover {
+            background-color: #3367d6;
+            transform: translateY(-2px);
+        }
+
         /* 收藏按鈕 */
         .favorite-btn {
             position: absolute;
@@ -170,11 +189,58 @@
             transition: color 0.3s, transform 0.3s;
         }
         .favorite-btn:hover {
-            color: var(--accent-color);
+            color: var(--favorite-color);
             transform: scale(1.2);
         }
         .favorite-btn.favorited {
-            color: var(--accent-color);
+            color: var(--favorite-color);
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* 收藏計數器 */
+        .favorite-count {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--favorite-color);
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.8em;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* 收藏頁面樣式 */
+        .favorites-section {
+            display: none;
+        }
+        .favorites-section.active {
+            display: block;
+        }
+
+        .papers-section.active {
+            display: block;
+        }
+        .papers-section {
+            display: none;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-top: 20px;
         }
 
         footer {
@@ -183,24 +249,52 @@
             padding: 20px;
             color: #aaa;
         }
+
+        /* 通知樣式 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transform: translateX(300px);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .notification.success {
+            background-color: #27ae60;
+        }
+        .notification.info {
+            background-color: #3498db;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <nav class="navbar">
-            <div class="logo">Paper Tracker</div>
+            <div class="logo">
+                Paper Tracker
+                <span class="favorite-count" id="favoriteCount">0</span>
+            </div>
             <div class="nav-links">
-                <a href="#" class="active">最新論文</a>
-                <a href="#">我的收藏</a>
+                <a href="#" id="papersTab" class="active">最新論文</a>
+                <a href="#" id="favoritesTab">我的收藏</a>
             </div>
         </nav>
 
-        <main>
+        <!-- 最新論文區域 -->
+        <main id="papersSection" class="papers-section active">
             <h3 class="date-header">2025年8月27日 (今天)</h3>
             
-            <article class="paper-card">
-                <i class="fa-regular fa-star favorite-btn"></i>
+            <article class="paper-card" data-paper-id="1">
+                <i class="fa-regular fa-star favorite-btn" data-paper-id="1"></i>
                 <h2 class="paper-title">Predicting range shifts of alpine Bombus under climate change with mechanistic species distribution modeling</h2>
                 <div class="paper-meta">
                     <span><i class="fa-solid fa-user-group"></i>C. D. Ecologist et al.</span>
@@ -216,48 +310,259 @@
                     <p>我們結合了生理學數據和高解析度氣候預測，利用整合性的物種分佈模型，來預測高山熊蜂 (Bombus) 屬物種在全球暖化下的分佈範圍變化。研究發現，相較於傳統的相關性模型，我們的模型預測出更快的向高海拔退縮速度。此結果強調了在氣候變遷研究中，納入生物學機制的重要性。</p>
                 </div>
                 <div class="action-links">
-                    <a href="#" class="read-more-btn" target="_blank">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="read-more-btn" onclick="openOriginalPaper('Predicting range shifts of alpine Bombus under climate change with mechanistic species distribution modeling')">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="scholar-btn" onclick="searchGoogleScholar('Predicting range shifts alpine Bombus climate change mechanistic species distribution modeling')">Google Scholar <i class="fa-brands fa-google"></i></a>
                 </div>
             </article>
 
             <h3 class="date-header">2025年8月26日 (昨天)</h3>
 
-            <article class="paper-card">
-                <i class="fa-solid fa-star favorite-btn favorited"></i> <h2 class="paper-title">The Role of Hymenoptera in Orchard Pollination: A Synthesis</h2>
+            <article class="paper-card" data-paper-id="2">
+                <i class="fa-regular fa-star favorite-btn" data-paper-id="2"></i>
+                <h2 class="paper-title">The Role of Hymenoptera in Orchard Pollination: A Synthesis</h2>
                 <div class="paper-meta">
                     <span><i class="fa-solid fa-user-group"></i>E. F. Agriculturist</span>
                     <span><i class="fa-solid fa-book-open"></i>Ecology & Society</span>
                 </div>
                 <div>
                     <span class="keyword-tag">Hymenoptera</span>
+                    <span class="keyword-tag">Pollination</span>
+                    <span class="keyword-tag">Agriculture</span>
                 </div>
                 <div class="abstract">
                     <h4>中文摘要</h4>
                     <p>本綜述性文章回顧了膜翅目昆蟲，特別是蜜蜂與胡蜂，在全球果園授粉生態系統中所扮演的關鍵角色。我們整合了超過200篇文獻，分析了牠們的授粉效率、對農業產出的貢獻，以及面臨的農藥和棲地喪失威脅，並提出了永續的保育建議。</p>
                 </div>
-                 <div class="action-links">
-                    <a href="#" class="read-more-btn" target="_blank">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="action-links">
+                    <a href="#" class="read-more-btn" onclick="openOriginalPaper('The Role of Hymenoptera in Orchard Pollination A Synthesis')">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="scholar-btn" onclick="searchGoogleScholar('Role Hymenoptera Orchard Pollination Synthesis')">Google Scholar <i class="fa-brands fa-google"></i></a>
                 </div>
             </article>
 
-            </main>
+            <h3 class="date-header">2025年8月25日 (前天)</h3>
+
+            <article class="paper-card" data-paper-id="3">
+                <i class="fa-regular fa-star favorite-btn" data-paper-id="3"></i>
+                <h2 class="paper-title">Machine Learning Approaches for Biodiversity Monitoring Using Acoustic Data</h2>
+                <div class="paper-meta">
+                    <span><i class="fa-solid fa-user-group"></i>A. B. DataScientist et al.</span>
+                    <span><i class="fa-solid fa-book-open"></i>Nature Ecology & Evolution</span>
+                </div>
+                <div>
+                    <span class="keyword-tag">Machine Learning</span>
+                    <span class="keyword-tag">Biodiversity</span>
+                    <span class="keyword-tag">Acoustic monitoring</span>
+                </div>
+                <div class="abstract">
+                    <h4>中文摘要</h4>
+                    <p>本研究開發了一套基於深度學習的聲學監測系統，能夠自動識別森林生態系中的物種多樣性。我們的模型達到了92%的物種識別準確率，並成功應用於熱帶雨林的長期生物多樣性監測計畫。此技術為大規模生態監測提供了高效且經濟的解決方案。</p>
+                </div>
+                <div class="action-links">
+                    <a href="#" class="read-more-btn" onclick="openOriginalPaper('Machine Learning Approaches Biodiversity Monitoring Acoustic Data')">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#" class="scholar-btn" onclick="searchGoogleScholar('Machine Learning Biodiversity Monitoring Acoustic Data')">Google Scholar <i class="fa-brands fa-google"></i></a>
+                </div>
+            </article>
+        </main>
+
+        <!-- 收藏區域 -->
+        <main id="favoritesSection" class="favorites-section">
+            <h3 class="date-header">我的收藏論文</h3>
+            <div id="favoritePapers">
+                <div class="empty-message">
+                    <i class="fa-regular fa-star" style="font-size: 3em; margin-bottom: 20px; display: block;"></i>
+                    <p>您還沒有收藏任何論文<br>點擊論文卡片右上角的星星圖示來收藏您感興趣的論文</p>
+                </div>
+            </div>
+        </main>
 
         <footer>
             <p>&copy; 2025 客製化論文監測站. All Rights Reserved.</p>
         </footer>
     </div>
 
+    <!-- 通知元素 -->
+    <div id="notification" class="notification"></div>
+
     <script>
-        // 這段 JavaScript 只是為了讓您可以體驗點擊收藏的「視覺效果」
-        // 實際功能需要後端和資料庫支持
-        document.querySelectorAll('.favorite-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // 切換 Font Awesome 的 class: fa-regular 是空心, fa-solid 是實心
-                this.classList.toggle('fa-regular');
-                this.classList.toggle('fa-solid');
-                // 切換自定義的 'favorited' class 來改變顏色
-                this.classList.toggle('favorited');
+        // 收藏功能相關變數
+        let favorites = new Set();
+        let papers = new Map();
+
+        // 初始化論文資料
+        function initializePapers() {
+            papers.set('1', {
+                id: '1',
+                title: 'Predicting range shifts of alpine Bombus under climate change with mechanistic species distribution modeling',
+                authors: 'C. D. Ecologist et al.',
+                journal: 'Journal of Biogeography',
+                date: '2025年8月27日',
+                keywords: ['Bombus', 'Species distribution modeling', 'climate change'],
+                abstract: '我們結合了生理學數據和高解析度氣候預測，利用整合性的物種分佈模型，來預測高山熊蜂 (Bombus) 屬物種在全球暖化下的分佈範圍變化。研究發現，相較於傳統的相關性模型，我們的模型預測出更快的向高海拔退縮速度。此結果強調了在氣候變遷研究中，納入生物學機制的重要性。'
             });
+
+            papers.set('2', {
+                id: '2',
+                title: 'The Role of Hymenoptera in Orchard Pollination: A Synthesis',
+                authors: 'E. F. Agriculturist',
+                journal: 'Ecology & Society',
+                date: '2025年8月26日',
+                keywords: ['Hymenoptera', 'Pollination', 'Agriculture'],
+                abstract: '本綜述性文章回顧了膜翅目昆蟲，特別是蜜蜂與胡蜂，在全球果園授粉生態系統中所扮演的關鍵角色。我們整合了超過200篇文獻，分析了牠們的授粉效率、對農業產出的貢獻，以及面臨的農藥和棲地喪失威脅，並提出了永續的保育建議。'
+            });
+
+            papers.set('3', {
+                id: '3',
+                title: 'Machine Learning Approaches for Biodiversity Monitoring Using Acoustic Data',
+                authors: 'A. B. DataScientist et al.',
+                journal: 'Nature Ecology & Evolution',
+                date: '2025年8月25日',
+                keywords: ['Machine Learning', 'Biodiversity', 'Acoustic monitoring'],
+                abstract: '本研究開發了一套基於深度學習的聲學監測系統，能夠自動識別森林生態系中的物種多樣性。我們的模型達到了92%的物種識別準確率，並成功應用於熱帶雨林的長期生物多樣性監測計畫。此技術為大規模生態監測提供了高效且經濟的解決方案。'
+            });
+        }
+
+        // 顯示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // 更新收藏計數
+        function updateFavoriteCount() {
+            const countElement = document.getElementById('favoriteCount');
+            countElement.textContent = favorites.size;
+            countElement.style.display = favorites.size > 0 ? 'block' : 'none';
+        }
+
+        // 收藏/取消收藏功能
+        function toggleFavorite(paperId) {
+            const button = document.querySelector(`[data-paper-id="${paperId}"].favorite-btn`);
+            
+            if (favorites.has(paperId)) {
+                // 取消收藏
+                favorites.delete(paperId);
+                button.classList.remove('fa-solid', 'favorited');
+                button.classList.add('fa-regular');
+                showNotification('已從收藏中移除', 'info');
+            } else {
+                // 添加收藏
+                favorites.add(paperId);
+                button.classList.remove('fa-regular');
+                button.classList.add('fa-solid', 'favorited');
+                showNotification('已添加至收藏', 'success');
+            }
+            
+            updateFavoriteCount();
+            updateFavoritesDisplay();
+        }
+
+        // 更新收藏頁面顯示
+        function updateFavoritesDisplay() {
+            const favoritePapersContainer = document.getElementById('favoritePapers');
+            
+            if (favorites.size === 0) {
+                favoritePapersContainer.innerHTML = `
+                    <div class="empty-message">
+                        <i class="fa-regular fa-star" style="font-size: 3em; margin-bottom: 20px; display: block;"></i>
+                        <p>您還沒有收藏任何論文<br>點擊論文卡片右上角的星星圖示來收藏您感興趣的論文</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let favoritesHTML = '';
+            favorites.forEach(paperId => {
+                const paper = papers.get(paperId);
+                if (paper) {
+                    favoritesHTML += `
+                        <article class="paper-card" data-paper-id="${paper.id}">
+                            <i class="fa-solid fa-star favorite-btn favorited" data-paper-id="${paper.id}"></i>
+                            <h2 class="paper-title">${paper.title}</h2>
+                            <div class="paper-meta">
+                                <span><i class="fa-solid fa-user-group"></i>${paper.authors}</span>
+                                <span><i class="fa-solid fa-book-open"></i>${paper.journal}</span>
+                            </div>
+                            <div>
+                                ${paper.keywords.map(keyword => `<span class="keyword-tag">${keyword}</span>`).join('')}
+                            </div>
+                            <div class="abstract">
+                                <h4>中文摘要</h4>
+                                <p>${paper.abstract}</p>
+                            </div>
+                            <div class="action-links">
+                                <a href="#" class="read-more-btn" onclick="openOriginalPaper('${paper.title}')">閱讀原文 <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="#" class="scholar-btn" onclick="searchGoogleScholar('${paper.title.replace(/[^\w\s]/gi, '').substring(0, 50)}')">Google Scholar <i class="fa-brands fa-google"></i></a>
+                            </div>
+                        </article>
+                    `;
+                }
+            });
+            
+            favoritePapersContainer.innerHTML = favoritesHTML;
+        }
+
+        // Google Scholar 搜索功能
+        function searchGoogleScholar(query) {
+            const scholarUrl = `https://scholar.google.com/scholar?q=${encodeURIComponent(query)}`;
+            window.open(scholarUrl, '_blank');
+        }
+
+        // 開啟原文連結功能（這裡可以連接到實際的論文資料庫）
+        function openOriginalPaper(title) {
+            // 這裡可以連接到您的論文資料庫或DOI系統
+            // 目前示範使用Google Scholar搜索
+            searchGoogleScholar(title);
+        }
+
+        // 標籤切換功能
+        function switchTab(tabName) {
+            // 更新導覽標籤樣式
+            document.querySelectorAll('.nav-links a').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (tabName === 'papers') {
+                document.getElementById('papersTab').classList.add('active');
+                document.getElementById('papersSection').style.display = 'block';
+                document.getElementById('favoritesSection').style.display = 'none';
+            } else if (tabName === 'favorites') {
+                document.getElementById('favoritesTab').classList.add('active');
+                document.getElementById('papersSection').style.display = 'none';
+                document.getElementById('favoritesSection').style.display = 'block';
+            }
+        }
+
+        // 事件監聽器
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化論文資料
+            initializePapers();
+            
+            // 收藏按鈕事件
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('favorite-btn')) {
+                    const paperId = e.target.getAttribute('data-paper-id');
+                    toggleFavorite(paperId);
+                }
+            });
+
+            // 標籤切換事件
+            document.getElementById('papersTab').addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab('papers');
+            });
+
+            document.getElementById('favoritesTab').addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab('favorites');
+            });
+
+            // 初始化收藏計數顯示
+            updateFavoriteCount();
         });
     </script>
 
