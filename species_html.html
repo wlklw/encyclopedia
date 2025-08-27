@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物種詳情 - 物種圖鑑管理系統</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="back-button">&larr; 回到首頁</a>
+            <h1>物種詳情</h1>
+        </nav>
+    </header>
+
+    <main class="species-detail">
+        <div class="loading" id="loading">載入中...</div>
+        
+        <div class="species-not-found" id="speciesNotFound" style="display: none;">
+            <h2>找不到指定的物種</h2>
+            <p>請檢查 URL 是否正確，或回到首頁重新選擇。</p>
+            <a href="index.html" class="button">回到首頁</a>
+        </div>
+
+        <div class="species-content" id="speciesContent" style="display: none;">
+            <div class="species-image">
+                <img id="speciesImage" src="" alt="">
+            </div>
+            
+            <div class="species-info">
+                <h2 id="chineseName"></h2>
+                <p class="scientific-name" id="scientificName"></p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>科：</label>
+                        <span id="family"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>屬：</label>
+                        <span id="genus"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>發現地點：</label>
+                        <span id="discoveryLocation"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>發現日期：</label>
+                        <span id="discoveryDate"></span>
+                    </div>
+                </div>
+                
+                <div class="notes">
+                    <label>備註：</label>
+                    <p id="notes"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 物種圖鑑管理系統</p>
+    </footer>
+
+    <script src="js/species.js"></script>
+</body>
+</html>

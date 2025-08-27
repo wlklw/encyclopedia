@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增物種 - 物種圖鑑管理系統</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="back-button">&larr; 回到首頁</a>
+            <h1>新增物種</h1>
+        </nav>
+    </header>
+
+    <main class="add-species">
+        <form id="addSpeciesForm">
+            <div class="form-section">
+                <h3>基本資訊</h3>
+                <div class="form-group">
+                    <label for="scientificName">學名 *</label>
+                    <input type="text" id="scientificName" name="scientificName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="chineseName">中文名 *</label>
+                    <input type="text" id="chineseName" name="chineseName" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="family">科 *</label>
+                        <input type="text" id="family" name="family" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="genus">屬 *</label>
+                        <input type="text" id="genus" name="genus" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>發現資訊</h3>
+                <div class="form-group">
+                    <label for="discoveryLocation">發現地點 *</label>
+                    <input type="text" id="discoveryLocation" name="discoveryLocation" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="discoveryDate">發現日期 *</label>
+                    <input type="date" id="discoveryDate" name="discoveryDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">備註</label>
+                    <textarea id="notes" name="notes" rows="4" placeholder="請描述發現時的情況、特徵或其他相關資訊..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>圖片</h3>
+                <div class="form-group">
+                    <label for="speciesImage">選擇圖片</label>
+                    <input type="file" id="speciesImage" name="speciesImage" accept="image/*">
+                    <div class="image-preview" id="imagePreview" style="display: none;">
+                        <img id="previewImg" src="" alt="預覽圖片">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">新增物種</button>
+                <button type="button" id="exportButton" class="export-button" style="display: none;">匯出更新的資料庫</button>
+                <button type="reset" class="reset-button">清除表單</button>
+            </div>
+        </form>
+
+        <div class="success-message" id="successMessage" style="display: none;">
+            <h3>物種新增成功！</h3>
+            <p>請點擊「匯出更新的資料庫」按鈕下載新的 species.json 檔案，然後手動上傳到 /data/ 目錄。</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 物種圖鑑管理系統</p>
+    </footer>
+
+    <script src="js/add.js"></script>
+</body>
+</html>

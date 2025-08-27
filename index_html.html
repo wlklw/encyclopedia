@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物種圖鑑管理系統</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>物種圖鑑管理系統</h1>
+        <div class="header-controls">
+            <input type="text" id="searchBox" placeholder="搜尋學名、中文名或科名...">
+            <a href="add.html" class="add-button">新增物種</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats">
+            <p>共有 <span id="totalCount">0</span> 個物種</p>
+        </div>
+        
+        <div class="species-grid" id="speciesGrid">
+            <!-- 物種卡片將由 JavaScript 動態生成 -->
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <p>找不到符合條件的物種</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 物種圖鑑管理系統</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
