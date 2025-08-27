@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學術論文監測站 (客製版)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        header {
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        header h1 {
+            color: #2c3e50;
+            margin: 0;
+        }
+        header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        .update-info {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .paper-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: box-shadow 0.3s ease;
+        }
+        .paper-card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+        }
+        .paper-title {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .paper-meta {
+            font-size: 0.9em;
+            color: #95a5a6;
+            margin-bottom: 15px;
+        }
+        .keyword-tag {
+            display: inline-block;
+            background-color: #e7f3ff;
+            color: #007bff;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            margin-bottom: 10px;
+        }
+        .abstract {
+            background-color: #f9f9f9;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        .abstract h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        .read-more-btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .read-more-btn:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>學術論文每日監測站</h1>
+            <p>監測期刊: Global Change Biology, Ecology, Journal of Biogeography 等 9 種</p>
+            <p class="update-info">2025年8月27日 更新</p>
+        </header>
+
+        <main>
+            <article class="paper-card">
+                <h2 class="paper-title">Assessing Habitat Suitability for Apis dorsata under Future Climate Change Scenarios Using Species Distribution Modeling</h2>
+                <div class="paper-meta">
+                    <strong>作者:</strong> F. G. Modeler, H. I. Ecologist | <strong>期刊:</strong> Global Ecology and Biogeography | <strong>發表日期:</strong> 2025-08-26
+                </div>
+                <div>
+                    <span class="keyword-tag">Species distribution modeling</span>
+                    <span class="keyword-tag">climate change</span>
+                </div>
+                <div class="abstract">
+                    <h4>中文摘要</h4>
+                    <p>本研究應用物種分佈模型 (Species distribution modeling) 預測在不同的氣候變遷情境下，大蜜蜂 (Apis dorsata) 在南亞地區的棲地適宜性變化。模型結果表明，至2070年，由於氣溫上升和降雨模式改變，該物種的整體適生區將會顯著縮減，特別是在低海拔地區。此結果凸顯了將氣候變遷納入授粉昆蟲保育計畫的迫切性。</p>
+                </div>
+                <a href="#" class="read-more-btn" target="_blank">閱讀原文</a>
+            </article>
+
+            <article class="paper-card">
+                <h2 class="paper-title">A New Genus of Parasitoid Wasp (Hymenoptera: Braconidae) from the Amazon Rainforest</h2>
+                <div class="paper-meta">
+                    <strong>作者:</strong> J. K. Taxonomist | <strong>期刊:</strong> Diversity and Distributions | <strong>發表日期:</strong> 2025-08-25
+                </div>
+                <div>
+                    <span class="keyword-tag">Hymenoptera</span>
+                </div>
+                <div class="abstract">
+                    <h4>中文摘要</h4>
+                    <p>本文描述了一個在亞馬遜雨林中發現的寄生蜂（膜翅目：繭蜂科）新屬。透過形態學比較和分子數據分析，我們確認了其獨特的分類地位。此發現不僅增加了我們對新熱帶地區昆蟲多樣性的認識，也為膜翅目昆蟲的演化研究提供了新的材料。</p>
+                </div>
+                <a href="#" class="read-more-btn" target="_blank">閱讀原文</a>
+            </article>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2025 客製化論文監測站. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
