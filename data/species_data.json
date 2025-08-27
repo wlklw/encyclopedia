@@ -1,0 +1,59 @@
+{
+  "species": [
+    {
+      "id": "sp001",
+      "scientificName": "Panthera tigris",
+      "chineseName": "老虎",
+      "family": "貓科",
+      "genus": "豹屬",
+      "discoveryLocation": "中國東北",
+      "discoveryDate": "2024-01-15",
+      "notes": "在保護區內發現的亞成體個體，體態健康",
+      "image": "images/tiger.jpg"
+    },
+    {
+      "id": "sp002",
+      "scientificName": "Ailuropoda melanoleuca",
+      "chineseName": "大熊貓",
+      "family": "熊科",
+      "genus": "熊貓屬",
+      "discoveryLocation": "四川臥龍",
+      "discoveryDate": "2024-02-20",
+      "notes": "野生成年個體，正在覓食竹子",
+      "image": "images/panda.jpg"
+    },
+    {
+      "id": "sp003",
+      "scientificName": "Canis lupus",
+      "chineseName": "灰狼",
+      "family": "犬科",
+      "genus": "犬屬",
+      "discoveryLocation": "內蒙古草原",
+      "discoveryDate": "2024-03-10",
+      "notes": "群體活動，約有5-6個個體",
+      "image": "images/wolf.jpg"
+    },
+    {
+      "id": "sp004",
+      "scientificName": "Grus japonensis",
+      "chineseName": "丹頂鶴",
+      "family": "鶴科",
+      "genus": "鶴屬",
+      "discoveryLocation": "黑龍江濕地",
+      "discoveryDate": "2024-01-28",
+      "notes": "遷徙途中的個體，停留約3天後離開",
+      "image": "images/crane.jpg"
+    },
+    {
+      "id": "sp005",
+      "scientificName": "Rhincodon typus",
+      "chineseName": "鯨鯊",
+      "family": "鯨鯊科",
+      "genus": "鯨鯊屬",
+      "discoveryLocation": "南海海域",
+      "discoveryDate": "2024-04-05",
+      "notes": "體長約8公尺的成年個體，游泳速度緩慢",
+      "image": "images/whale_shark.jpg"
+    }
+  ]
+}

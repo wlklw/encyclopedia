@@ -1,0 +1,399 @@
+/* 基本樣式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* 頁首樣式 */
+header {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#searchBox {
+    flex: 1;
+    min-width: 300px;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.add-button, .button, .back-button {
+    background: #e74c3c;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.add-button:hover, .button:hover, .back-button:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* 導航樣式 */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* 主要內容 */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.stats {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 物種網格 */
+.species-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.species-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.species-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.species-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.species-card-content {
+    padding: 1.5rem;
+}
+
+.species-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.scientific-name {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+}
+
+.species-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #95a5a6;
+    font-size: 0.9rem;
+}
+
+/* 物種詳情頁 */
+.species-detail {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.loading, .species-not-found {
+    text-align: center;
+    padding: 3rem;
+    color: #7f8c8d;
+}
+
+.species-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.species-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.species-info h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.species-info .scientific-name {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.notes {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+}
+
+.notes label {
+    font-weight: bold;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* 新增物種表單 */
+.add-species {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+}
+
+.form-section h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ecf0f1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.image-preview {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.image-preview img {
+    max-width: 300px;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.submit-button,
+.export-button,
+.reset-button {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button {
+    background: #27ae60;
+    color: white;
+}
+
+.submit-button:hover {
+    background: #2ecc71;
+}
+
+.export-button {
+    background: #f39c12;
+    color: white;
+}
+
+.export-button:hover {
+    background: #e67e22;
+}
+
+.reset-button {
+    background: #95a5a6;
+    color: white;
+}
+
+.reset-button:hover {
+    background: #7f8c8d;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #7f8c8d;
+}
+
+/* 頁腳 */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #searchBox {
+        min-width: auto;
+    }
+    
+    .species-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+    
+    .species-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .species-image img {
+        height: 250px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+}
